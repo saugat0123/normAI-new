@@ -56,7 +56,7 @@ public class CreateSubmission {
     By submit = By.xpath("//button[@type='submit']");
     By subCreated = By.xpath("//p[contains(text(),'Submission Created!')]");
     By subName = By.xpath("//input[@placeholder='Enter a name for this submission']");
-
+    By supportingMaterials = By.xpath("//button[contains(text(),'Add Supporting Materials')]");
 
     public void clickNewSubmission() throws InterruptedException {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
@@ -85,6 +85,13 @@ public class CreateSubmission {
         driver.findElement(subName).sendKeys("pinetree"+randomNum);
         driver.findElement(getStarted).click();
         wait.until(ExpectedConditions.visibilityOfElementLocated(selectRegulationsLabel));
+    }
+
+    public void addSupportingMaterials() {
+        driver.findElement(supportingMaterials).click();
+        By upload = By.xpath("//button[contains(text(),\"Upload New File\")]");
+        new Wait(driver, Duration.ofSeconds(20), upload);
+        driver.findElement(upload).sendKeys("D:\\NormAIfiles\\pinetree.pdf");
     }
 
     public void selectRegulations() {
@@ -145,6 +152,7 @@ public class CreateSubmission {
         new Wait(driver, Duration.ofSeconds(20), dateNeededBy);
         driver.findElement(submit).click();
         new Wait(driver, Duration.ofSeconds(20), subCreated);
+
     }
 
 

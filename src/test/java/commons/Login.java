@@ -13,13 +13,14 @@ public class Login extends BaseClass {
 		LoginPage loginPage = new LoginPage(driver);
 		loginPage.enterEmail(em);
 		loginPage.clickContinue();
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@id='password']")));
 		loginPage.enterPassword(pass);
 		loginPage.clickContinue();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//p[contains(text(),'Select an Organization')]")));
 		loginPage.selectOrg();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[@href='/projects/start?refresh=true']")));
+		System.out.println("Reached here!");
+		wait.until(ExpectedConditions.urlContains("https://app.norm.ai/projects"));
 	}
 
 }

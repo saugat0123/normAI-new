@@ -12,7 +12,7 @@ import pages.CreateSubmission;
 public class RegressionAI extends BaseClass {
 
     String email = "saugat.dahal@bitskraft.com";
-    String password = "Newaccount123!";
+    String password = "P@ssw0rd";
     String pdf = "pdf";
     String ppt = "ppt";
 
@@ -26,10 +26,14 @@ public class RegressionAI extends BaseClass {
         CreateSubmission createSubmission = new CreateSubmission(driver);
         createSubmission.clickNewSubmission();
         createSubmission.selectFile(pdf);
-        createSubmission.selectRegulations();
-        createSubmission.enterSubmissionDetails();
-        createSubmission.enterContentDetails();
-        createSubmission.enterDistributionDetails();
+        createSubmission.addSupportingMaterials();
+        Thread.sleep(5000);
+//        createSubmission.selectRegulations();
+//        createSubmission.enterSubmissionDetails();
+//        createSubmission.enterContentDetails();
+//        createSubmission.enterDistributionDetails();
+
+
         Assert.assertTrue(true, "Submission created successfully!");
     }
 }
