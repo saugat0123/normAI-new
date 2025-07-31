@@ -6,6 +6,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import pages.LoginPage;
 
 import java.time.Duration;
+import java.util.Date;
 
 public class Login extends BaseClass {
 
@@ -17,6 +18,8 @@ public class Login extends BaseClass {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@id='password']")));
 		loginPage.enterPassword(pass);
 		loginPage.clickContinue();
+//		Thread.sleep(10);
+//		driver.findElement(By.xpath("//button[contains(text(),'OK')]"));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//p[contains(text(),'Select an Organization')]")));
 		loginPage.selectOrg();
 		System.out.println("Reached here!");

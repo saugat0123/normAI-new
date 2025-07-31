@@ -3,6 +3,7 @@ package commons;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.AfterMethod;
@@ -10,6 +11,8 @@ import org.testng.annotations.BeforeMethod;
 
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Properties;
 
 public class BaseClass {
@@ -26,7 +29,27 @@ public class BaseClass {
 		}
 		if (configProperties.getProperty("browser").equalsIgnoreCase("chrome")) {
 			WebDriverManager.chromedriver().setup();
-			driver = new ChromeDriver();
+
+//			ChromeOptions options = new ChromeOptions();
+//			options.addArguments("--disable-blink-features=AutomationControlled");
+//			options.setExperimentalOption("excludeSwitches", new String[]{"enable-automation"});
+//			options.setExperimentalOption("useAutomationExtension", false);
+
+			// Disable the password manager
+//			Map<String, Object> prefs = new HashMap<>();
+//			prefs.put("credentials_enable_service", false);
+//			prefs.put("profile.password_manager_enabled", false);
+//			options.setExperimentalOption("prefs", prefs);
+
+			ChromeOptions options = new ChromeOptions();
+			options.addArguments("--disable-blink-features=AutomationControlled"); // optional
+			options.setExperimentalOption("prefs", Map.of(
+					"credentials_enable_service", false,
+					"profile.password_manager_enabled", false
+			));
+			driver = new ChromeDriver(options);
+
+//			driver = new ChromeDriver();
 			driver.manage().window().maximize();
 			driver.get(configProperties.getProperty("url"));
 		}

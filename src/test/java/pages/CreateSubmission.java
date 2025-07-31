@@ -3,6 +3,7 @@ package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -10,6 +11,7 @@ import utilities.Action;
 import utilities.Wait;
 
 import java.time.Duration;
+import java.util.Date;
 import java.util.Random;
 
 public class CreateSubmission {
@@ -59,8 +61,9 @@ public class CreateSubmission {
     By supportingMaterials = By.xpath("//button[contains(text(),'Add Supporting Materials')]");
 
     public void clickNewSubmission() throws InterruptedException {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
-        wait.until(ExpectedConditions.visibilityOfElementLocated(sidebar));
+//        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+//        wait.until(ExpectedConditions.visibilityOfElementLocated(sidebar));
+        new Wait(driver, Duration.ofSeconds(30), sidebar);
         driver.findElement(sidebar).click();
         Thread.sleep(1000);
         driver.findElement(clickNewSub).click();
@@ -83,8 +86,7 @@ public class CreateSubmission {
         }
         int randomNum = new Random().nextInt(1000);
         driver.findElement(subName).sendKeys("pinetree"+randomNum);
-        driver.findElement(getStarted).click();
-        wait.until(ExpectedConditions.visibilityOfElementLocated(selectRegulationsLabel));
+        new Wait(driver, Duration.ofSeconds(5), supportingMaterials);
     }
 
     public void addSupportingMaterials() {
@@ -92,6 +94,8 @@ public class CreateSubmission {
         By upload = By.xpath("//button[contains(text(),\"Upload New File\")]");
         new Wait(driver, Duration.ofSeconds(20), upload);
         driver.findElement(upload).sendKeys("D:\\NormAIfiles\\pinetree.pdf");
+        driver.findElement(getStarted).click();
+        new Wait(driver, Duration.ofSeconds(20), selectRegulationsLabel);
     }
 
     public void selectRegulations() {
@@ -112,6 +116,23 @@ public class CreateSubmission {
         driver.findElement(nextBtn).click();
         new Wait(driver, Duration.ofSeconds(20), contentDetailsLabel);
         System.out.println("Reached here!!!");
+    }
+
+    public void selectBusinessUnits() {
+        driver.findElement(By.xpath("//p[contains(text(), 'QA')]")).click();
+        driver.findElement(By.xpath("//input[@name='fields.review_due_date']")).click();
+
+        Date date = new Date();
+        String today = String.valueOf(date);
+        String todayDate = today.split(" ")[2];
+
+        driver.findElement(By.xpath("//button[contains(text(), '"+todayDate+"')]")).click();
+        driver.findElement(By.xpath("//button[contains(text(), 'Done')]")).click();
+        driver.findElement(By.xpath("//button[contains(text(), 'Next')]")).click();
+        new Wait(driver, Duration.ofSeconds(5), By.xpath("//button[contains(text(), 'Understood')]"));
+        driver.findElement(By.xpath("//button[contains(text(), 'Understood')]")).click();
+        driver.findElement(By.xpath("//button[contains(text(), 'Next')]")).click();
+        new Wait(driver, Duration.ofSeconds(20), subDetailLabel);
     }
 
     public void enterContentDetails() {
@@ -152,6 +173,20 @@ public class CreateSubmission {
         new Wait(driver, Duration.ofSeconds(20), dateNeededBy);
         driver.findElement(submit).click();
         new Wait(driver, Duration.ofSeconds(20), subCreated);
+
+    }
+
+    public void submitSubmission() {
+        Actions actions = new Actions(driver);
+        WebElement intendedAudience = driver.findElement(By.xpath("(//*[contains(@class, 'formdropdown')])[1]"));
+        intendedAudience.click();
+        actions.sendKeys(Keys.TAB).perform();
+        WebElement distributionChannel = driver.findElement(By.xpath("(//*[contains(@class, 'formdropdown')])[2]"));
+        distributionChannel.click();
+        actions.sendKeys(Keys.TAB).perform();
+        driver.findElement(By.xpath("//p[contains(text(), 'Website')]")).click();
+        driver.findElement(By.xpath("//input[@type='text']")).sendKeys("test");
+        driver.findElement(By.xpath("//button[contains(text(), 'Submit')]")).click();
 
     }
 
