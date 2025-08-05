@@ -125,8 +125,9 @@ public class CreateSubmission {
         Date date = new Date();
         String today = String.valueOf(date);
         String todayDate = today.split(" ")[2];
+        int td = Integer.parseInt(todayDate);
 
-        driver.findElement(By.xpath("//button[contains(text(), '"+todayDate+"')]")).click();
+        driver.findElement(By.xpath("//button[contains(text(), '"+td+"')]")).click();
         driver.findElement(By.xpath("//button[contains(text(), 'Done')]")).click();
         driver.findElement(By.xpath("//button[contains(text(), 'Next')]")).click();
         new Wait(driver, Duration.ofSeconds(5), By.xpath("//button[contains(text(), 'Understood')]"));
