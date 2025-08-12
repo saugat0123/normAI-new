@@ -13,7 +13,7 @@ public class test extends BaseClass {
     @Test
     public void checkUpload() throws IOException, NoSuchMethodException, InterruptedException {
         SupportingDocsPage spp = new SupportingDocsPage(driver);
-        SupportingDocs ss = new SupportingDocs();
+        SupportingDocsTest ss = new SupportingDocsTest();
 
         driver.get("https://demo.automationtesting.in/FileUpload.html");
 

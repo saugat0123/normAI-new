@@ -85,6 +85,7 @@ public class CreateSubmission {
                 break;
         }
         int randomNum = new Random().nextInt(1000);
+        new Wait(driver, Duration.ofSeconds(10), subName);
         driver.findElement(subName).sendKeys("pinetree"+randomNum);
         new Wait(driver, Duration.ofSeconds(5), supportingMaterials);
     }
@@ -97,6 +98,8 @@ public class CreateSubmission {
         driver.findElement(getStarted).click();
         new Wait(driver, Duration.ofSeconds(20), selectRegulationsLabel);
     }
+
+
 
     public void selectRegulations() {
         driver.findElement(finra).click();
@@ -130,7 +133,7 @@ public class CreateSubmission {
         driver.findElement(By.xpath("//button[contains(text(), '"+td+"')]")).click();
         driver.findElement(By.xpath("//button[contains(text(), 'Done')]")).click();
         driver.findElement(By.xpath("//button[contains(text(), 'Next')]")).click();
-        new Wait(driver, Duration.ofSeconds(5), By.xpath("//button[contains(text(), 'Understood')]"));
+        new Wait(driver, Duration.ofSeconds(10), By.xpath("//button[contains(text(), 'Understood')]"));
         driver.findElement(By.xpath("//button[contains(text(), 'Understood')]")).click();
         driver.findElement(By.xpath("//button[contains(text(), 'Next')]")).click();
         new Wait(driver, Duration.ofSeconds(20), subDetailLabel);
@@ -178,9 +181,10 @@ public class CreateSubmission {
     }
 
     public void submitSubmission() {
-        Actions actions = new Actions(driver);
+        new Wait(driver, Duration.ofSeconds(20), By.xpath("(//*[contains(@class, 'formdropdown')])[1]"));
         WebElement intendedAudience = driver.findElement(By.xpath("(//*[contains(@class, 'formdropdown')])[1]"));
         intendedAudience.click();
+        Actions actions = new Actions(driver);
         actions.sendKeys(Keys.TAB).perform();
         WebElement distributionChannel = driver.findElement(By.xpath("(//*[contains(@class, 'formdropdown')])[2]"));
         distributionChannel.click();

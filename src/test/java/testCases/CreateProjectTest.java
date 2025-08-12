@@ -11,7 +11,7 @@ import utilities.ReadXlSData;
 
 import java.time.Duration;
 
-public class CreateProject extends BaseClass {
+public class CreateProjectTest extends BaseClass {
 
     @Test(dataProviderClass = ReadXlSData.class, dataProvider = "testdata")
     public void CreateProjectTest(String projectName, String releaseDate, String audience, String channel, String filePath) throws InterruptedException {

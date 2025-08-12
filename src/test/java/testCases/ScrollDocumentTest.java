@@ -1,18 +1,15 @@
 package testCases;
 
 import commons.BaseClass;
-import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.CreateProjectPage;
 import pages.LoginPage;
-import utilities.ReadXlSData;
 
 import java.time.Duration;
 
-public class ScrollDocument extends BaseClass {
+public class ScrollDocumentTest extends BaseClass {
 
 //    @Test(dataProviderClass = ReadXlSData.class, dataProvider = "testdata")
     @Test

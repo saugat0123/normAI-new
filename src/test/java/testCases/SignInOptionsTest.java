@@ -1,7 +1,7 @@
 package testCases;
 
 import org.testng.annotations.Test;
-import org.testng.AssertJUnit;
+
 import java.time.Duration;
 
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -10,7 +10,7 @@ import org.testng.Assert;
 import commons.BaseClass;
 import pages.SignInOptionsPage;
 
-public class SignInOptions extends BaseClass{
+public class SignInOptionsTest extends BaseClass{
 	
 	@Test
 	public void SignInOptionsTest() {

@@ -7,7 +7,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
-import pages.CreateProjectPage;
 import pages.LoginPage;
 import pages.SupportingDocsPage;
 import utilities.ReadXlSData;
@@ -18,12 +17,12 @@ import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SupportingDocs extends BaseClass {
+public class SupportingDocsTest extends BaseClass {
     public List<String> getAllFilesPath() throws NoSuchMethodException, IOException {
         ReadXlSData rd = new ReadXlSData();
         int columnToExtract = 0; // 0-based index
         List<String> extractedColumn = new ArrayList<>();
-        Method method = SupportingDocs.class.getMethod("UploadSupportingDocsTest");
+        Method method = SupportingDocsTest.class.getMethod("UploadSupportingDocsTest");
         String[][] data = rd.getData(method);
         for (String[] row : data) {
             if (columnToExtract < row.length) {

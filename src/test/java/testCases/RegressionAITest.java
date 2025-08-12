@@ -9,7 +9,7 @@ import org.testng.annotations.Test;
 import pages.CreateSubmission;
 
 @Listeners(TestListener.class)
-public class RegressionAI extends BaseClass {
+public class RegressionAITest extends BaseClass {
 
     String email = "saugat.dahal@bitskraft.com";
     String password = "N3w@cc0unt123!";
