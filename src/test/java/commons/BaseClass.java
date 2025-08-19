@@ -47,6 +47,9 @@ public class BaseClass {
 					"credentials_enable_service", false,
 					"profile.password_manager_enabled", false
 			));
+			options.addArguments("--headless");           // Run headless
+			options.addArguments("--no-sandbox");         // Important for Jenkins/Linux
+			options.addArguments("--disable-dev-shm-usage");
 			driver = new ChromeDriver(options);
 
 //			driver = new ChromeDriver();

@@ -81,7 +81,7 @@ public class CreateSubmission {
                 driver.findElement(selectFileArea).sendKeys("D:\\NormAIfiles\\ppt.pptx");
                 break;
             case "word":
-                driver.findElement(selectFileArea).sendKeys("D:\\NormAIfiles\\doc.docx");
+                driver.findElement(selectFileArea).sendKeys("D:\\NormAIfiles\\pinetree.docx");
                 break;
         }
         int randomNum = new Random().nextInt(1000);

@@ -13,7 +13,7 @@ public class AiRegressionTest extends BaseClass {
 
     String email = "saugat.dahal@bitskraft.com";
     String password = "N3w@cc0unt123!";
-    String pdf = "pdf";
+    String pdf = "word";
     String ppt = "ppt";
 
     @Test
