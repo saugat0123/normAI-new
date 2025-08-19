@@ -1,5 +1,6 @@
 package pages;
 
+import java.time.Duration;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
@@ -10,6 +11,7 @@ import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 
 import commons.BaseClass;
+import utilities.Wait;
 
 public class LoginPage {
 	
@@ -42,6 +44,7 @@ public class LoginPage {
 	}
 	
 	public void enterEmail(String email) {
+		new Wait(driver, Duration.ofSeconds(20), enterEmail);
 		driver.findElement(enterEmail).click();
         driver.findElement(enterEmail).sendKeys(email);
 	}

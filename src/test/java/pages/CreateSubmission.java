@@ -86,7 +86,7 @@ public class CreateSubmission {
         }
         int randomNum = new Random().nextInt(1000);
         new Wait(driver, Duration.ofSeconds(10), subName);
-        driver.findElement(subName).sendKeys("pinetree"+randomNum);
+        driver.findElement(subName).sendKeys(""+randomNum);
         new Wait(driver, Duration.ofSeconds(5), supportingMaterials);
     }
 
@@ -98,8 +98,6 @@ public class CreateSubmission {
         driver.findElement(getStarted).click();
         new Wait(driver, Duration.ofSeconds(20), selectRegulationsLabel);
     }
-
-
 
     public void selectRegulations() {
         driver.findElement(finra).click();
@@ -192,6 +190,7 @@ public class CreateSubmission {
         driver.findElement(By.xpath("//p[contains(text(), 'Website')]")).click();
         driver.findElement(By.xpath("//input[@type='text']")).sendKeys("test");
         driver.findElement(By.xpath("//button[contains(text(), 'Submit')]")).click();
+        new Wait(driver, Duration.ofSeconds(20), By.xpath("//button[contains(text(), 'View submission')]"));
 
     }
 
