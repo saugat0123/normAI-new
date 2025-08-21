@@ -2,6 +2,7 @@ package testCases;
 
 import commons.BaseClass;
 import commons.Login;
+import pages.DraftsPage;
 import utilities.TestListener;
 import org.testng.Assert;
 import org.testng.annotations.Listeners;
@@ -17,10 +18,10 @@ public class AiRegressionTest extends BaseClass {
     String ppt = "ppt";
 
     @Test
-    public void regressionSteps() throws InterruptedException {
+    public void createSubmission() throws InterruptedException {
         Login login = new Login();
         login.userLogin(email, password);
-        Assert.assertTrue(true, "Logged in successfully!");
+        Assert.assertTrue(true, "Logged in failed!");
 
         //Step 1: Upload a valid PDF file
         CreateSubmission createSubmission = new CreateSubmission(driver);
@@ -34,7 +35,17 @@ public class AiRegressionTest extends BaseClass {
 //        createSubmission.enterContentDetails();
 //        createSubmission.enterDistributionDetails();
 
+        Assert.assertTrue(true, "Submission creation failed!");
+    }
 
-        Assert.assertTrue(true, "Submission created successfully!");
+    @Test
+    public void deleteDraft() throws InterruptedException {
+        Login login = new Login();
+        login.userLogin(email, password);
+
+        DraftsPage draftsPage = new DraftsPage(driver);
+        draftsPage.waitForDraftsPageToLoad();
+        boolean delete = draftsPage.deleteFirst();
+        Assert.assertTrue(delete, "Draft deletion failed");
     }
 }
