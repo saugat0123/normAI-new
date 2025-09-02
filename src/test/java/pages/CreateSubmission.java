@@ -65,8 +65,10 @@ public class CreateSubmission {
 //        wait.until(ExpectedConditions.visibilityOfElementLocated(sidebar));
         new Wait(driver, Duration.ofSeconds(30), sidebar);
         driver.findElement(sidebar).click();
-        Thread.sleep(1000);
+//        Thread.sleep(1000);
+        new Wait(driver, Duration.ofSeconds(10), clickNewSub);
         driver.findElement(clickNewSub).click();
+
 
     }
 
