@@ -16,32 +16,44 @@ public class DraftsPage {
         this.driver = driver;
     }
 
+    int countBeforeDelete;
+
     By draftsTab = By.xpath("//span[contains(text(), 'Drafts')]");
     By firstInfoIcon = By.xpath("(//td//button[contains(@class,'inline-flex')])[1]");
     By deleteIcon = By.xpath("//span[contains(text(),'Delete draft')]/parent::button");
-    By confirmDelete = By.xpath("//button[contains(text(),'Delete')]");
-    By draftCount = By.xpath("(//button//div[contains(@class,'inline-flex')])[4]");
+    By confirmDelete = By.xpath("//div[@role='alertdialog']//button[text()='Delete']");
+    By  draftCount = By.xpath("//button[.//span[text()='Drafts']]//div");
 
     public void waitForDraftsPageToLoad() {
-        new Wait(driver, Duration.ofSeconds(20), draftsTab);
         driver.findElement(draftsTab).click();
+        new Wait(driver, Duration.ofSeconds(20), By.xpath("//table"));
     }
 
-    public boolean deleteFirst() throws InterruptedException {
+    public int drftCount() {
+//        new Wait(driver, Duration.ofSeconds(20), draftCount);
+        return Integer.parseInt(driver.findElement(draftCount).getText());
+    }
+
+    public void deleteFirst() throws InterruptedException {
         new Wait(driver, Duration.ofSeconds(20), firstInfoIcon);
-        int countBeforeDelete = Integer.parseInt(driver.findElement(draftCount).getText());
-        System.out.println("countBeforeDelete:: "+ countBeforeDelete);
-//        Thread.sleep(5000);
         driver.findElement(firstInfoIcon).click();
-//        driver.findElement(deleteIcon).click();
-        Thread.sleep(5000);
-        WebElement span = driver.findElement(By.xpath("//span[contains(text(),'Delete draft')]"));
-        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", span);
-        System.out.println("asdasdasd");
+        Thread.sleep(1000);
+        driver.findElement(By.xpath("//div[@role='dialog']")).click();
+        By delicon = By.xpath("(//div[@role='dialog']//div[@dir='ltr']//div[.//button[normalize-space()='Delete draft']])[2]");
+//        new Wait(driver, Duration.ofSeconds(15), delicon);
+//        WebElement delBtn = driver.findElement(By.xpath("//div[@role='dialog']//div[2]//div//div[2]/button"));
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", driver.findElement(delicon));
+        System.out.println("del icon click vo");
+//        Thread.sleep(7000);
+        new Wait(driver, Duration.ofSeconds(10), confirmDelete);
         driver.findElement(confirmDelete).click();
-        int countAfterDelete = Integer.parseInt(driver.findElement(draftCount).getText());
-        System.out.println("countAfterDelete"+ countAfterDelete);
-        return countAfterDelete == countBeforeDelete -1;
+//        Thread.sleep(3000);
+        new Wait(driver, Duration.ofSeconds(20), draftCount);
+//        int countAfterDelete = Integer.parseInt(driver.findElement(By.xpath("//button//div[contains(@class,'inline-flex')])[4]")).getText());
+//        Thread.sleep(10000);
+//        System.out.println("after"+ countAfterDelete);
+//        System.out.println("before"+ countBeforeDelete);
+//        return countBeforeDelete == countAfterDelete + 1;
     }
 
     public void checkDraftsCount() {

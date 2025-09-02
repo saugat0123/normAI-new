@@ -67,7 +67,7 @@ public class CreateSubmission {
         driver.findElement(sidebar).click();
         Thread.sleep(1000);
         driver.findElement(clickNewSub).click();
-        System.out.println("clicked here!!!");
+
     }
 
     public void selectFile(String ftype) {
@@ -116,7 +116,7 @@ public class CreateSubmission {
         driver.findElement(By.xpath("//p[contains(text(),'" + materialType + "')]")).click();
         driver.findElement(nextBtn).click();
         new Wait(driver, Duration.ofSeconds(20), contentDetailsLabel);
-        System.out.println("Reached here!!!");
+//        System.out.println("Reached here!!!");
     }
 
     public void selectBusinessUnits() {

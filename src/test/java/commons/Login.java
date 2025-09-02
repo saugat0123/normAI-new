@@ -22,7 +22,7 @@ public class Login extends BaseClass {
 //		driver.findElement(By.xpath("//button[contains(text(),'OK')]"));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//p[contains(text(),'Select an Organization')]")));
 		loginPage.selectOrg();
-		System.out.println("Reached here!");
+		System.out.println("Logged in!");
 		wait.until(ExpectedConditions.urlContains("https://app.norm.ai/projects"));
 	}
 
