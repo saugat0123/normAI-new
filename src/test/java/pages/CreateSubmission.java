@@ -98,7 +98,7 @@ public class CreateSubmission {
         new Wait(driver, Duration.ofSeconds(20), upload);
         driver.findElement(upload).sendKeys("D:\\NormAIfiles\\pinetree.pdf");
         driver.findElement(getStarted).click();
-        new Wait(driver, Duration.ofSeconds(20), selectRegulationsLabel);
+        new Wait(driver, Duration.ofSeconds(30), selectRegulationsLabel);
     }
 
     public void selectRegulations() {
