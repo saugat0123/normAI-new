@@ -11,8 +11,8 @@ public class ExtentReportManager {
 
     public static ExtentReports getReporter() {
         if (extent == null) {
-            String timestamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-            String reportPath = "test-output/ExtentReport_" + timestamp + ".html";
+            String timestamp = new SimpleDateFormat("yyyy_MM_dd_HH_mm").format(new Date());
+            String reportPath = "test-output/Report_" + timestamp + ".html";
             ExtentSparkReporter sparkReporter = new ExtentSparkReporter(reportPath);
             sparkReporter.config().setReportName("Regression Automation Test Report");
             sparkReporter.config().setDocumentTitle("Extent Report");

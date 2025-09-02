@@ -14,7 +14,7 @@ import org.openqa.selenium.WebDriver;
 public class CaptureScreenshot extends BaseClass{
 
 	public static String takeScreenshot(WebDriver driver) {
-		String timestamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+		String timestamp = new SimpleDateFormat("yyyy_MM_dd_HH_mm").format(new Date());
 		String folderPath = System.getProperty("user.dir") + "/test-output/screenshots/";
 //		new File(folderPath).mkdirs(); // Create folder if not exist
 
