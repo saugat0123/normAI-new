@@ -30,7 +30,7 @@ public class AiRegressionTest extends BaseClass {
 //        createSubmission.addSupportingMaterials();
         createSubmission.clickGettingStarted();
         createSubmission.selectBusinessUnits();
-        createSubmission.selectRegulations();
+//        createSubmission.selectRegulations();
         createSubmission.submitSubmission();
 //        createSubmission.enterSubmissionDetails();
 //        createSubmission.enterContentDetails();
