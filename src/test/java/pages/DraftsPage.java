@@ -25,8 +25,8 @@ public class DraftsPage {
     By  draftCount = By.xpath("//button[.//span[text()='Drafts']]//div");
 
     public void waitForDraftsPageToLoad() {
-        driver.findElement(draftsTab).click();
         new Wait(driver, Duration.ofSeconds(20), By.xpath("//table"));
+        driver.findElement(draftsTab).click();
     }
 
     public int drftCount() {

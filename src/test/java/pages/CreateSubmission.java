@@ -101,6 +101,12 @@ public class CreateSubmission {
         new Wait(driver, Duration.ofSeconds(40), selectRegulationsLabel);
     }
 
+    public void clickGettingStarted() {
+        new Wait(driver, Duration.ofSeconds(20), getStarted);
+        driver.findElement(getStarted).click();
+        new Wait(driver, Duration.ofSeconds(40), subDetailLabel);
+    }
+
     public void selectRegulations() {
         driver.findElement(finra).click();
         driver.findElement(nextBtn).click();
@@ -123,6 +129,12 @@ public class CreateSubmission {
 
     public void selectBusinessUnits() {
         driver.findElement(By.xpath("//p[contains(text(), 'QA')]")).click();
+//        driver.findElement(By.xpath("(//p[contains(text(), 'Operations')])[2]")).click();
+//        driver.findElement(By.xpath("(//p[contains(text(), 'Customer Support')]")).click();
+
+//        driver.findElement(By.xpath("//p[text()='Operations']")).click();
+//        driver.findElement(By.xpath("//p[(text()='Customer Support')]")).click();
+//        driver.findElement(By.xpath("(//*[starts-with(@id, 'accordion-panel-:r')] //input)[2]")).click();
         driver.findElement(By.xpath("//input[@name='fields.review_due_date']")).click();
 
         Date date = new Date();

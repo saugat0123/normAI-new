@@ -73,6 +73,7 @@ public class BaseClass {
 	
 	@AfterMethod
 	public void teardown() {
+
 		driver.quit();
 	}
 

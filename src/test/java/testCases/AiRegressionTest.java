@@ -27,9 +27,10 @@ public class AiRegressionTest extends BaseClass {
         CreateSubmission createSubmission = new CreateSubmission(driver);
         createSubmission.clickNewSubmission();
         createSubmission.selectFile(pdf);
-        createSubmission.addSupportingMaterials();
-        createSubmission.selectRegulations();
+//        createSubmission.addSupportingMaterials();
+        createSubmission.clickGettingStarted();
         createSubmission.selectBusinessUnits();
+        createSubmission.selectRegulations();
         createSubmission.submitSubmission();
 //        createSubmission.enterSubmissionDetails();
 //        createSubmission.enterContentDetails();
