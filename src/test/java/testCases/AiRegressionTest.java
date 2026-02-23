@@ -18,6 +18,7 @@ public class AiRegressionTest extends BaseClass {
     String ppt = "ppt";
 
     @Test
+//    @Test(invocationCount = 3)
     public void createSubmission() throws InterruptedException {
         Login login = new Login();
         login.userLogin(email, password);
@@ -26,16 +27,19 @@ public class AiRegressionTest extends BaseClass {
         //Step 1: Upload a valid PDF file
         CreateSubmission createSubmission = new CreateSubmission(driver);
         createSubmission.clickNewSubmission();
-        createSubmission.selectFile(pdf);
+        createSubmission.selectFile(ppt);
+//        Thread.sleep(25000);
 //        createSubmission.addSupportingMaterials();
         createSubmission.clickGettingStarted();
         createSubmission.selectBusinessUnits();
 //        createSubmission.selectRegulations();
-        createSubmission.submitSubmission();
+        String title = createSubmission.submitSubmission();
 //        createSubmission.enterSubmissionDetails();
 //        createSubmission.enterContentDetails();
 //        createSubmission.enterDistributionDetails();
 
+        System.out.println(":::: "+title);
+        createSubmission.viewSubmission();
         Assert.assertTrue(true, "Submission creation failed!");
     }
 
@@ -53,5 +57,9 @@ public class AiRegressionTest extends BaseClass {
 //            System.out.println("end");
 //            Assert.assertTrue(true, "Draft deletion failed");
 //        }
+//    }
+
+//    public void validateCreatedSubmission() {
+//
 //    }
 }

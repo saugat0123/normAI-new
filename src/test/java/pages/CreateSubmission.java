@@ -23,7 +23,7 @@ public class CreateSubmission {
         this.driver = driver;
     }
 
-    By sidebar = By.xpath("//button[@data-sidebar=\"trigger\"]");
+    By sidebar = By.xpath("//button[@data-sidebar='trigger']");
     By clickNewSub = By.xpath("//span[contains(text(),'New Submission')]");
     By selectFileArea = By.xpath("//input[@type='file']");
     By getStarted = By.xpath("//button[contains(text(),'Get Started')]");
@@ -63,40 +63,41 @@ public class CreateSubmission {
     public void clickNewSubmission() throws InterruptedException {
 //        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
 //        wait.until(ExpectedConditions.visibilityOfElementLocated(sidebar));
-        new Wait(driver, Duration.ofSeconds(30), sidebar);
-        driver.findElement(sidebar).click();
+        new Wait(driver, Duration.ofSeconds(30), By.xpath("//tbody/tr[1]/td[1]"));
+//        driver.findElement(sidebar).click();
 //        Thread.sleep(1000);
-        new Wait(driver, Duration.ofSeconds(10), clickNewSub);
-        driver.findElement(clickNewSub).click();
+        driver.findElement(By.xpath("//a")).click();
+//        new Wait(driver, Duration.ofSeconds(10), By.xpath("//p[text()='New Submission']"));
+//        driver.findElement(clickNewSub).click();
 
 
     }
 
     public void selectFile(String ftype) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
-        wait.until(ExpectedConditions.visibilityOfElementLocated(selectFileArea));
+        wait.until(ExpectedConditions.presenceOfElementLocated(selectFileArea));
         switch (ftype) {
             case "pdf":
                 driver.findElement(selectFileArea).sendKeys("D:\\NormAIfiles\\pinetree.pdf");
                 break;
             case "ppt":
-                driver.findElement(selectFileArea).sendKeys("D:\\NormAIfiles\\ppt.pptx");
+                driver.findElement(selectFileArea).sendKeys("D:\\NormAIfiles\\1_Pinetree Investment Partners - Fund I Overview Demo v1.pptx");
                 break;
             case "word":
                 driver.findElement(selectFileArea).sendKeys("D:\\NormAIfiles\\pinetree.docx");
                 break;
         }
         int randomNum = new Random().nextInt(1000);
-        new Wait(driver, Duration.ofSeconds(10), subName);
+        new Wait(driver, Duration.ofSeconds(20), subName);
         driver.findElement(subName).sendKeys(""+randomNum);
-        new Wait(driver, Duration.ofSeconds(5), supportingMaterials);
+        new Wait(driver, Duration.ofSeconds(20), supportingMaterials);
     }
 
     public void addSupportingMaterials() {
         driver.findElement(supportingMaterials).click();
-        By upload = By.xpath("//button[contains(text(),\"Upload New File\")]");
+        By upload = By.xpath("//button[contains(text(),'Upload New File')]");
         new Wait(driver, Duration.ofSeconds(20), upload);
-        driver.findElement(upload).sendKeys("D:\\NormAIfiles\\pinetree.pdf");
+        driver.findElement(upload).sendKeys("D:\\NormAIfiles\\pinetree_factsheet.pdf");
         driver.findElement(getStarted).click();
         new Wait(driver, Duration.ofSeconds(40), selectRegulationsLabel);
     }
@@ -145,7 +146,7 @@ public class CreateSubmission {
         driver.findElement(By.xpath("//button[contains(text(), '"+td+"')]")).click();
         driver.findElement(By.xpath("//button[contains(text(), 'Done')]")).click();
         driver.findElement(By.xpath("//button[contains(text(), 'Next')]")).click();
-        new Wait(driver, Duration.ofSeconds(10), By.xpath("//button[contains(text(), 'Understood')]"));
+        new Wait(driver, Duration.ofSeconds(20), By.xpath("//button[contains(text(), 'Understood')]"));
         driver.findElement(By.xpath("//button[contains(text(), 'Understood')]")).click();
         driver.findElement(By.xpath("//button[contains(text(), 'Next')]")).click();
         new Wait(driver, Duration.ofSeconds(20), subDetailLabel);
@@ -192,7 +193,7 @@ public class CreateSubmission {
 
     }
 
-    public void submitSubmission() {
+    public String submitSubmission() {
         new Wait(driver, Duration.ofSeconds(20), By.xpath("(//*[contains(@class, 'formdropdown')])[1]"));
         WebElement intendedAudience = driver.findElement(By.xpath("(//*[contains(@class, 'formdropdown')])[1]"));
         intendedAudience.click();
@@ -205,7 +206,14 @@ public class CreateSubmission {
         driver.findElement(By.xpath("//input[@type='text']")).sendKeys("test");
         driver.findElement(By.xpath("//button[contains(text(), 'Submit')]")).click();
         new Wait(driver, Duration.ofSeconds(20), By.xpath("//button[contains(text(), 'View submission')]"));
+        return driver.findElement(
+                By.xpath("//span[text()='Unassigned']/ancestor::div[1]/following-sibling::div[1]")
+        ).getText();
+    }
 
+    public void viewSubmission() {
+        driver.findElement(By.xpath("//button[text()='View submission']")).click();
+        new Wait(driver, Duration.ofSeconds(20), By.xpath("//span[text()='Details']"));
     }
 
 

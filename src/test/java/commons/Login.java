@@ -22,7 +22,7 @@ public class Login extends BaseClass {
 //		Thread.sleep(10);
 //		driver.findElement(By.xpath("//button[contains(text(),'OK')]"));
 //		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//p[contains(text(),'Select an Organization')]")));
-		WebElement aa = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[1]")));
+		WebElement aa = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[2]")));
 //		loginPage.selectOrg();
 		aa.click();
 		System.out.println("Logged in!");
